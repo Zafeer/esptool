@@ -302,7 +302,7 @@ class ESPLoader(object):
             try:
                 self._port = serial.serial_for_url(port)
             except serial.serialutil.SerialException:
-                raise FatalError(f"Could not open {port}, the port doesn't exist")
+                raise FatalError(f"Could not open {port}, {sys.exc_info()[1]}")
         else:
             self._port = port
         self._slip_reader = slip_reader(self._port, self.trace)
